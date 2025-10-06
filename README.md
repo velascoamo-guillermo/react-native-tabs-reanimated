@@ -2,13 +2,13 @@
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
-## Tabs animadas estilo Apple Mail
+## Apple Mail-style Animated Tabs
 
-Este proyecto incluye un componente personalizado que simula las tabs del email de Apple usando [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/).
+This project includes a custom component that simulates the Apple Mail tabs using [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/).
 
-Puedes ver una demostración en el siguiente video:
+You can watch a demo in the following video:
 
-[Ver video de las tabs animadas](https://drive.google.com/file/d/1S79DF-P03zac8ccNMgzi0Sgr8eixbhYn/view?usp=sharing)
+[Watch the animated tabs demo](https://drive.google.com/file/d/1S79DF-P03zac8ccNMgzi0Sgr8eixbhYn/view?usp=sharing)
 
 ---
 
