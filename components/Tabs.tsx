@@ -1,103 +1,101 @@
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import React, { useState } from "react";
-import { Pressable, StyleSheet } from "react-native";
+import TabType from "@/interfaces/Tab.interface";
+import React, { useEffect, useState } from "react";
+import {
+  ScrollViewProps,
+  StyleProp,
+  StyleSheet,
+  TextProps,
+  ViewProps,
+  ViewStyle,
+} from "react-native";
 import Animated, {
-  FadeInLeft,
-  FadeOutLeft,
+  ComplexAnimationBuilder,
   LinearTransition,
 } from "react-native-reanimated";
+import Tab from "./Tab";
 
-type TabIconName = "account" | "cart" | "message-text" | "bullhorn" | "inbox";
-
-type Tab = {
-  id: number;
-  name: string;
-  icon: TabIconName;
-  color: string;
-};
-
-const tabs: Tab[] = [
-  {
-    id: 1,
-    name: "Primary",
-    icon: "account",
-    color: "lightblue",
-  },
-  {
-    id: 2,
-    name: "Transactions",
-    icon: "cart",
-    color: "lightgreen",
-  },
-  {
-    id: 3,
-    name: "News",
-    icon: "message-text",
-    color: "lightpink",
-  },
-  {
-    id: 4,
-    name: "Promotions",
-    icon: "bullhorn",
-    color: "lavender",
-  },
-  {
-    id: 5,
-    name: "All",
-    icon: "inbox",
-    color: "lightgrey",
-  },
-];
-
-const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 const _layout = LinearTransition.springify();
 
-export default function Tabs() {
+interface TabsProps {
+  tabs: TabType[];
+  containerStyle?: StyleProp<ViewStyle>;
+  layoutAnimation?: ComplexAnimationBuilder;
+  hideText?: boolean;
+  scrollable?: boolean;
+  inactiveColor?: string;
+  activeColor?: string;
+  tintColor?: string;
+  scrollProps?: ScrollViewProps;
+  viewProps?: ViewProps;
+  textProps?: TextProps;
+  onActiveChange?: (tab: TabType) => void;
+}
+
+export default function Tabs({
+  tabs,
+  inactiveColor = "grey",
+  activeColor = "white",
+  layoutAnimation = _layout,
+  scrollable = true,
+  tintColor = "black",
+  scrollProps,
+  viewProps,
+  textProps,
+  onActiveChange,
+}: TabsProps): React.JSX.Element {
   const [active, setActive] = useState(tabs[0]);
 
+  const ParentComponent = scrollable ? Animated.ScrollView : Animated.View;
+
+  useEffect(() => {
+    onActiveChange?.(active);
+  }, [active]);
+
   return (
-    <Animated.View style={styles.container} layout={_layout}>
-      {tabs.map((tab, index) => (
-        <AnimatedPressable
-          style={[styles.tabContainer, { backgroundColor: tab.color }]}
-          key={`${tab.name}-${tab.icon}`}
-          onPress={() => setActive(tab)}
-          layout={_layout}
-        >
-          <MaterialCommunityIcons size={24} name={tab.icon} />
-          {active.id === tab.id ? (
-            <Animated.Text
-              entering={FadeInLeft.springify()}
-              exiting={FadeOutLeft.springify()}
-              layout={_layout}
-              style={{ overflow: "hidden" }}
-            >
-              {tab.name}
-            </Animated.Text>
-          ) : null}
-        </AnimatedPressable>
-      ))}
-    </Animated.View>
+    <ParentComponent
+      layout={layoutAnimation}
+      {...(scrollable
+        ? { ...defaultScrollProps, ...scrollProps }
+        : { ...defaultViewProps, ...viewProps })}
+    >
+      {tabs.map((tab, index) => {
+        const isActive = active.id === tab.id;
+        const color = tab.color
+          ? tab.color
+          : isActive
+          ? activeColor
+          : inactiveColor;
+        return (
+          <Tab
+            key={index}
+            tab={tab}
+            isActive={isActive}
+            color={color}
+            tintColor={tintColor}
+            layoutAnimation={layoutAnimation}
+            textProps={textProps}
+            onPress={setActive}
+          />
+        );
+      })}
+    </ParentComponent>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
     flexDirection: "row",
     gap: 8,
-    overflow: "hidden",
-  },
-  tabContainer: {
-    borderRadius: 24,
-    justifyContent: "center",
-    alignItems: "center",
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    flexDirection: "row",
-    overflow: "hidden",
-    gap: 8,
+    flexWrap: "wrap",
   },
 });
+
+const defaultScrollProps = {
+  horizontal: true,
+  showsHorizontalScrollIndicator: false,
+  contentContainerStyle: styles.container,
+};
+
+const defaultViewProps = {
+  style: styles.container,
+};
