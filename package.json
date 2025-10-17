@@ -1,5 +1,5 @@
 {
-  "name": "rn-apple-email-tabs",
+  "name": "react-native-tabs-reanimated",
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {

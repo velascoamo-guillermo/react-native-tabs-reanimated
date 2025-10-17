@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "rn-apple-email-tabs",
-    "slug": "rn-apple-email-tabs",
+    "name": "react-native-tabs-reanimated",
+    "slug": "react-native-tabs-reanimated",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
