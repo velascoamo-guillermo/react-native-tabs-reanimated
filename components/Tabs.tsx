@@ -36,6 +36,7 @@ export default function Tabs({
   activesColor = "white",
   layoutAnimation = _layout,
   scrollable = true,
+  containerStyle,
   scrollProps,
   viewProps,
   defaultActiveIndex = 0,
@@ -67,6 +68,16 @@ export default function Tabs({
 
   const checkIsActive = (index: number) => {
     return actives.some((active) => active === index);
+  };
+
+  const defaultScrollProps = {
+    horizontal: true,
+    showsHorizontalScrollIndicator: false,
+    contentContainerStyle: [styles.container, containerStyle],
+  };
+
+  const defaultViewProps = {
+    style: [styles.container, containerStyle],
   };
 
   return (
@@ -103,15 +114,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 8,
     flexWrap: "wrap",
+    padding: 24,
   },
 });
-
-const defaultScrollProps = {
-  horizontal: true,
-  showsHorizontalScrollIndicator: false,
-  contentContainerStyle: styles.container,
-};
-
-const defaultViewProps = {
-  style: styles.container,
-};

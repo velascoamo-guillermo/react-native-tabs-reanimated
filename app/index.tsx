@@ -53,7 +53,8 @@ export default function Index() {
       />
       <Tabs
         tabs={dataWithoutIcons}
-        scrollable
+        scrollable={false}
+        isMultiSelector
         scrollProps={{ horizontal: true }}
         showTexts
         showCloseIcon
