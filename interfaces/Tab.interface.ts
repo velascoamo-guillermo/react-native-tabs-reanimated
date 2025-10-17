@@ -4,6 +4,6 @@ export default interface TabType {
   id: number;
   name: string;
   icon?: string;
-  color: string;
+  color?: string;
   customIcon?: ReactNode;
 }

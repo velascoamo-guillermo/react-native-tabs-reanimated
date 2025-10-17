@@ -22,9 +22,16 @@ interface TabProps {
   color: string;
   tintColor?: string;
   layoutAnimation?: ComplexAnimationBuilder;
+  textAnimation?: {
+    entering?: ComplexAnimationBuilder;
+    exiting?: ComplexAnimationBuilder;
+  };
   tabStyle?: StyleProp<ViewStyle>;
   textProps?: TextProps;
   expoVectorIconProps?: ExpoVectorIconsProps;
+  showCloseIcon?: boolean;
+  showTexts?: boolean;
+  customCloseIcon?: React.ReactNode;
   onPress: (tab: TabType) => void;
 }
 
@@ -33,10 +40,14 @@ function Tab({
   color,
   isActive,
   layoutAnimation,
-  tintColor,
+  tintColor = "#000",
   tabStyle,
   textProps,
   expoVectorIconProps,
+  showCloseIcon,
+  showTexts,
+  customCloseIcon,
+  textAnimation,
   onPress,
 }: TabProps) {
   return (
@@ -64,16 +75,40 @@ function Tab({
           />
         )
       ) : null}
-      {isActive ? (
+      {showTexts || isActive ? (
         <Animated.Text
-          entering={FadeInLeft.springify()}
-          exiting={FadeOutLeft.springify()}
+          entering={
+            textAnimation?.entering
+              ? textAnimation.entering
+              : FadeInLeft.springify()
+          }
+          exiting={
+            textAnimation?.exiting
+              ? textAnimation.exiting
+              : FadeOutLeft.springify()
+          }
           layout={layoutAnimation}
           style={[styles.text, { color: tintColor }]}
           {...textProps}
         >
           {tab.name}
         </Animated.Text>
+      ) : null}
+      {showCloseIcon && isActive ? (
+        <Animated.View>
+          {customCloseIcon ? (
+            customCloseIcon
+          ) : expoVectorIconProps ? (
+            <ExpoVectorIcon {...expoVectorIconProps} />
+          ) : (
+            <ExpoVectorIcon
+              family={"MaterialCommunityIcons"}
+              name={"close"}
+              size={20}
+              color={tintColor}
+            />
+          )}
+        </Animated.View>
       ) : null}
     </AnimatedPressable>
   );

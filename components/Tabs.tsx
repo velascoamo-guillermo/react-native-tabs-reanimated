@@ -22,34 +22,65 @@ interface TabsProps {
   layoutAnimation?: ComplexAnimationBuilder;
   hideText?: boolean;
   scrollable?: boolean;
-  inactiveColor?: string;
-  activeColor?: string;
+  inactivesColor?: string;
+  activesColor?: string;
   tintColor?: string;
   scrollProps?: ScrollViewProps;
   viewProps?: ViewProps;
   textProps?: TextProps;
-  onActiveChange?: (tab: TabType) => void;
+  defaultActiveIndex?: number;
+  isMultiSelector?: boolean;
+  showCloseIcon?: boolean;
+  showTexts?: boolean;
+  textAnimation?: {
+    entering?: ComplexAnimationBuilder;
+    exiting?: ComplexAnimationBuilder;
+  };
+  onActiveChange?: (actives: number[]) => void;
 }
 
 export default function Tabs({
   tabs,
-  inactiveColor = "grey",
-  activeColor = "white",
+  inactivesColor = "grey",
+  activesColor = "white",
   layoutAnimation = _layout,
   scrollable = true,
   tintColor = "black",
   scrollProps,
   viewProps,
   textProps,
+  defaultActiveIndex = 0,
+  isMultiSelector = false,
+  showCloseIcon,
+  showTexts,
+  textAnimation,
   onActiveChange,
 }: TabsProps): React.JSX.Element {
-  const [active, setActive] = useState(tabs[0]);
+  const [actives, setActives] = useState<number[]>([defaultActiveIndex]);
 
   const ParentComponent = scrollable ? Animated.ScrollView : Animated.View;
 
   useEffect(() => {
-    onActiveChange?.(active);
-  }, [active]);
+    onActiveChange?.(actives);
+  }, [actives]);
+
+  const onTabPress = ({ tab, index }: { tab: TabType; index: number }) => {
+    setActives((prevActives) => {
+      if (isMultiSelector) {
+        if (prevActives.some((active) => active === index)) {
+          return prevActives.filter((active) => active !== index);
+        } else {
+          return [...prevActives, index];
+        }
+      } else {
+        return [index];
+      }
+    });
+  };
+
+  const checkIsActive = (index: number) => {
+    return actives.some((active) => active === index);
+  };
 
   return (
     <ParentComponent
@@ -59,12 +90,12 @@ export default function Tabs({
         : { ...defaultViewProps, ...viewProps })}
     >
       {tabs.map((tab, index) => {
-        const isActive = active.id === tab.id;
+        const isActive = checkIsActive(index);
         const color = tab.color
           ? tab.color
           : isActive
-          ? activeColor
-          : inactiveColor;
+          ? activesColor
+          : inactivesColor;
         return (
           <Tab
             key={index}
@@ -74,7 +105,10 @@ export default function Tabs({
             tintColor={tintColor}
             layoutAnimation={layoutAnimation}
             textProps={textProps}
-            onPress={setActive}
+            showCloseIcon={showCloseIcon}
+            showTexts={showTexts}
+            textAnimation={textAnimation}
+            onPress={() => onTabPress({ tab, index })}
           />
         );
       })}
