@@ -11,12 +11,14 @@ import Animated, {
   ComplexAnimationBuilder,
   FadeInLeft,
   FadeOutLeft,
+  LinearTransition,
 } from "react-native-reanimated";
 import ExpoVectorIcon, { ExpoVectorIconsProps } from "./ExpoVectorIcons";
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+const _layout = LinearTransition.springify();
 
-interface TabProps {
+export interface TabProps {
   tab: TabType;
   isActive: boolean;
   color: string;
@@ -39,7 +41,7 @@ function Tab({
   tab,
   color,
   isActive,
-  layoutAnimation,
+  layoutAnimation = _layout,
   tintColor = "#000",
   tabStyle,
   textProps,

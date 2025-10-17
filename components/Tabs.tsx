@@ -4,7 +4,6 @@ import {
   ScrollViewProps,
   StyleProp,
   StyleSheet,
-  TextProps,
   ViewProps,
   ViewStyle,
 } from "react-native";
@@ -12,7 +11,7 @@ import Animated, {
   ComplexAnimationBuilder,
   LinearTransition,
 } from "react-native-reanimated";
-import Tab from "./Tab";
+import Tab, { TabProps } from "./Tab";
 
 const _layout = LinearTransition.springify();
 
@@ -24,18 +23,10 @@ interface TabsProps {
   scrollable?: boolean;
   inactivesColor?: string;
   activesColor?: string;
-  tintColor?: string;
   scrollProps?: ScrollViewProps;
   viewProps?: ViewProps;
-  textProps?: TextProps;
   defaultActiveIndex?: number;
   isMultiSelector?: boolean;
-  showCloseIcon?: boolean;
-  showTexts?: boolean;
-  textAnimation?: {
-    entering?: ComplexAnimationBuilder;
-    exiting?: ComplexAnimationBuilder;
-  };
   onActiveChange?: (actives: number[]) => void;
 }
 
@@ -45,17 +36,13 @@ export default function Tabs({
   activesColor = "white",
   layoutAnimation = _layout,
   scrollable = true,
-  tintColor = "black",
   scrollProps,
   viewProps,
-  textProps,
   defaultActiveIndex = 0,
   isMultiSelector = false,
-  showCloseIcon,
-  showTexts,
-  textAnimation,
   onActiveChange,
-}: TabsProps): React.JSX.Element {
+  ...tabProps
+}: TabsProps & Partial<TabProps>): React.JSX.Element {
   const [actives, setActives] = useState<number[]>([defaultActiveIndex]);
 
   const ParentComponent = scrollable ? Animated.ScrollView : Animated.View;
@@ -99,15 +86,10 @@ export default function Tabs({
         return (
           <Tab
             key={index}
+            {...tabProps}
             tab={tab}
             isActive={isActive}
             color={color}
-            tintColor={tintColor}
-            layoutAnimation={layoutAnimation}
-            textProps={textProps}
-            showCloseIcon={showCloseIcon}
-            showTexts={showTexts}
-            textAnimation={textAnimation}
             onPress={() => onTabPress({ tab, index })}
           />
         );
