@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/react-native-tabs-reanimated.svg)](https://www.npmjs.com/package/react-native-tabs-reanimated)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**React Native Tabs Reanimated** is a highly customizable, animated tab component for React Native applications. Built with [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/) and TypeScript, it provides smooth transitions, multi-select capabilities, and a beautiful native feel inspired by Apple's email tabs.
+**React Native Tabs Reanimated** is a highly customizable, animated tab component for React Native applications. Built with [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/) and TypeScript, it provides smooth transitions, multi-select capabilities, and a beautiful native feel.
 
 🎥 [**Watch Demo**](https://drive.google.com/file/d/1S79DF-P03zac8ccNMgzi0Sgr8eixbhYn/view?usp=sharing)
 
@@ -267,7 +267,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Built with ❤️ using [Expo](https://expo.dev) and TypeScript
 - Powered by [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/)
-- Inspired by Apple's email tab design
 
 ---
 
