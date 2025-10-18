@@ -1,11 +1,17 @@
-# 🎬 React Native Tabs Reanimated
+# 🎬 React Native Tabs## 📱 Live Demo
+
+<div align="center">
+  
+[![Demo Video](https://img.shields.io/badge/▶️_Watch_Demo-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://drive.google.com/file/d/1S79DF-P03zac8ccNMgzi0Sgr8eixbhYn/view?usp=sharing)
+
+</div>
+
+*Click above to watch the full demo showcasing different configurations: icons with colors, multi-select mode, text-only tabs, and various styling options*ated
 
 [![npm version](https://img.shields.io/npm/v/react-native-tabs-reanimated.svg)](https://www.npmjs.com/package/react-native-tabs-reanimated)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **React Native Tabs Reanimated** is a highly customizable, animated tab component for React Native applications. Built with [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/) and TypeScript, it provides smooth transitions, multi-select capabilities, and a beautiful native feel.
-
-🎥 [**Watch Demo**](https://drive.google.com/file/d/1S79DF-P03zac8ccNMgzi0Sgr8eixbhYn/view?usp=sharing)
 
 ---
 
@@ -25,7 +31,7 @@
 ## � Live Demo
 
 <div align="center">
-  <img src="https://github.com/velascoamo-guillermo/react-native-tabs-reanimated/assets/demo/demo.gif" alt="React Native Tabs Reanimated Demo" width="300"/>
+  <img src="./assets/demo/demo.gif" alt="React Native Tabs Reanimated Demo" width="300"/>
 </div>
 
 _Showcasing different configurations: icons with colors, multi-select mode, text-only tabs, and various styling options_
