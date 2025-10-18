@@ -25,7 +25,7 @@
 ## � Live Demo
 
 <div align="center">
-  <img src="https://github.com/velascoamo-guillermo/react-native-tabs-reanimated/assets/demo/tabs-showcase.png" alt="React Native Tabs Reanimated Demo" width="300"/>
+  <img src="https://github.com/velascoamo-guillermo/react-native-tabs-reanimated/assets/demo/demo.gif" alt="React Native Tabs Reanimated Demo" width="300"/>
 </div>
 
 _Showcasing different configurations: icons with colors, multi-select mode, text-only tabs, and various styling options_
