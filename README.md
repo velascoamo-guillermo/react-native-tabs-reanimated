@@ -28,10 +28,16 @@
 npm install react-native-tabs-reanimated react-native-reanimated react-native-gesture-handler
 ```
 
-or with yarn:
+with yarn:
 
 ```bash
 yarn add react-native-tabs-reanimated react-native-reanimated react-native-gesture-handler
+```
+
+or with bun:
+
+```bash
+bun add react-native-tabs-reanimated react-native-reanimated react-native-gesture-handler
 ```
 
 ### Peer Dependencies
@@ -39,7 +45,14 @@ yarn add react-native-tabs-reanimated react-native-reanimated react-native-gestu
 Make sure you have the following peer dependencies installed:
 
 ```bash
+# With npm
 npm install react-native-reanimated react-native-gesture-handler @expo/vector-icons
+
+# With yarn
+yarn add react-native-reanimated react-native-gesture-handler @expo/vector-icons
+
+# With bun
+bun add react-native-reanimated react-native-gesture-handler @expo/vector-icons
 ```
 
 > **Note:** If you're using Expo, these dependencies are usually pre-installed.
