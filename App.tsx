@@ -1,13 +1,13 @@
+import { FadeInRight, FadeInUp } from "react-native-reanimated";
+import { SafeAreaView } from "react-native-safe-area-context";
 import {
   data,
   dataWithoutColors,
   dataWithoutIcons,
-} from "@/__mocks__/tabs.mock";
-import Tabs from "@/components/Tabs";
-import { FadeInRight, FadeInUp } from "react-native-reanimated";
-import { SafeAreaView } from "react-native-safe-area-context";
+} from "./__mocks__/tabs.mock";
+import Tabs from "./components/Tabs";
 
-export default function Index() {
+export default function App() {
   return (
     <SafeAreaView style={{ backgroundColor: "white", flex: 1 }}>
       <Tabs

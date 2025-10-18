@@ -1,4 +1,3 @@
-import TabType from "@/interfaces/Tab.interface";
 import React from "react";
 import {
   Pressable,
@@ -13,6 +12,7 @@ import Animated, {
   FadeOutLeft,
   LinearTransition,
 } from "react-native-reanimated";
+import TabType from "../interfaces/Tab.interface";
 import ExpoVectorIcon, { ExpoVectorIconsProps } from "./ExpoVectorIcons";
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);

@@ -1,4 +1,3 @@
-import TabType from "@/interfaces/Tab.interface";
 import React, { useEffect, useState } from "react";
 import {
   ScrollViewProps,
@@ -11,6 +10,7 @@ import Animated, {
   ComplexAnimationBuilder,
   LinearTransition,
 } from "react-native-reanimated";
+import TabType from "../interfaces/Tab.interface";
 import Tab, { TabProps } from "./Tab";
 
 const _layout = LinearTransition.springify();
