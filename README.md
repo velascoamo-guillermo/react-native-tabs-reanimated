@@ -1,13 +1,5 @@
 # 🎬 React Native Tabs## 📱 Live Demo
 
-<div align="center">
-  
-[![Demo Video](https://img.shields.io/badge/▶️_Watch_Demo-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://drive.google.com/file/d/1S79DF-P03zac8ccNMgzi0Sgr8eixbhYn/view?usp=sharing)
-
-</div>
-
-*Click above to watch the full demo showcasing different configurations: icons with colors, multi-select mode, text-only tabs, and various styling options*ated
-
 [![npm version](https://img.shields.io/npm/v/react-native-tabs-reanimated.svg)](https://www.npmjs.com/package/react-native-tabs-reanimated)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
