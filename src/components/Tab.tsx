@@ -35,6 +35,10 @@ export interface TabProps {
   showTexts?: boolean;
   customCloseIcon?: React.ReactNode;
   onPress: (tab: TabType) => void;
+  // Accessibility props
+  accessibilityLabel?: string;
+  accessibilityHint?: string;
+  disabled?: boolean;
 }
 
 function Tab({
@@ -51,13 +55,40 @@ function Tab({
   customCloseIcon,
   textAnimation,
   onPress,
+  accessibilityLabel: customAccessibilityLabel,
+  accessibilityHint: customAccessibilityHint,
+  disabled = false,
 }: TabProps) {
+  const isDisabled = disabled || tab.disabled;
+  const finalAccessibilityLabel =
+    customAccessibilityLabel ||
+    tab.accessibilityLabel ||
+    `${tab.name || "Tab"} ${isActive ? "selected" : "unselected"}`;
+  const finalAccessibilityHint =
+    customAccessibilityHint ||
+    tab.accessibilityHint ||
+    `Tap to ${isActive ? "deselect" : "select"} ${tab.name || "this tab"}`;
+
   return (
     <AnimatedPressable
-      style={[styles.tabContainer, { backgroundColor: color }, tabStyle]}
+      style={[
+        styles.tabContainer,
+        { backgroundColor: color },
+        tabStyle,
+        isDisabled && styles.disabledTab,
+      ]}
       key={`${tab.name}-${tab.icon}`}
-      onPress={() => onPress(tab)}
+      onPress={() => !isDisabled && onPress(tab)}
       layout={layoutAnimation}
+      // Accessibility props
+      accessible={true}
+      accessibilityRole="button"
+      accessibilityLabel={finalAccessibilityLabel}
+      accessibilityHint={finalAccessibilityHint}
+      accessibilityState={{
+        selected: isActive,
+        disabled: isDisabled,
+      }}
     >
       {tab.customIcon ? (
         tab.customIcon
@@ -126,6 +157,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     overflow: "hidden",
     gap: 8,
+  },
+  disabledTab: {
+    opacity: 0.5,
   },
   text: {
     overflow: "hidden",

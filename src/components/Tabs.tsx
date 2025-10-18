@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
+  AccessibilityInfo,
   ScrollViewProps,
   StyleProp,
   StyleSheet,
@@ -28,6 +29,9 @@ interface TabsProps {
   defaultActiveIndex?: number;
   isMultiSelector?: boolean;
   onActiveChange?: (actives: number[]) => void;
+  // Accessibility props
+  accessibilityLabel?: string;
+  accessibilityHint?: string;
 }
 
 export default function Tabs({
@@ -42,6 +46,8 @@ export default function Tabs({
   defaultActiveIndex = 0,
   isMultiSelector = false,
   onActiveChange,
+  accessibilityLabel: customAccessibilityLabel,
+  accessibilityHint: customAccessibilityHint,
   ...tabProps
 }: TabsProps & Partial<TabProps>): React.JSX.Element {
   const [actives, setActives] = useState<number[]>([defaultActiveIndex]);
@@ -54,15 +60,30 @@ export default function Tabs({
 
   const onTabPress = ({ tab, index }: { tab: TabType; index: number }) => {
     setActives((prevActives) => {
+      const wasActive = prevActives.some((active) => active === index);
+      let newActives: number[];
+
       if (isMultiSelector) {
-        if (prevActives.some((active) => active === index)) {
-          return prevActives.filter((active) => active !== index);
+        if (wasActive) {
+          newActives = prevActives.filter((active) => active !== index);
+          // Announce deselection for multi-selector
+          AccessibilityInfo.announceForAccessibility(
+            `${tab.name} deselected. ${newActives.length} tabs selected.`
+          );
         } else {
-          return [...prevActives, index];
+          newActives = [...prevActives, index];
+          // Announce selection for multi-selector
+          AccessibilityInfo.announceForAccessibility(
+            `${tab.name} selected. ${newActives.length} tabs selected.`
+          );
         }
       } else {
-        return [index];
+        newActives = [index];
+        // Announce selection for single selector
+        AccessibilityInfo.announceForAccessibility(`${tab.name} tab selected`);
       }
+
+      return newActives;
     });
   };
 
@@ -70,14 +91,38 @@ export default function Tabs({
     return actives.some((active) => active === index);
   };
 
+  const defaultAccessibilityLabel =
+    customAccessibilityLabel ||
+    `Tab bar with ${tabs.length} tabs. ${
+      isMultiSelector ? "Multi" : "Single"
+    } selection mode.`;
+
+  const defaultAccessibilityHint =
+    customAccessibilityHint ||
+    `Navigate between tabs. ${
+      isMultiSelector
+        ? "Multiple tabs can be selected."
+        : "Only one tab can be selected at a time."
+    }`;
+
   const defaultScrollProps = {
     horizontal: true,
     showsHorizontalScrollIndicator: false,
     contentContainerStyle: [styles.container, containerStyle],
+    // Accessibility props for ScrollView
+    accessible: true,
+    accessibilityRole: "tablist" as const,
+    accessibilityLabel: defaultAccessibilityLabel,
+    accessibilityHint: defaultAccessibilityHint,
   };
 
   const defaultViewProps = {
     style: [styles.container, containerStyle],
+    // Accessibility props for View
+    accessible: true,
+    accessibilityRole: "tablist" as const,
+    accessibilityLabel: defaultAccessibilityLabel,
+    accessibilityHint: defaultAccessibilityHint,
   };
 
   return (

@@ -6,4 +6,8 @@ export default interface TabType {
   icon?: string;
   color?: string;
   customIcon?: ReactNode;
+  // Accessibility properties
+  disabled?: boolean;
+  accessibilityLabel?: string;
+  accessibilityHint?: string;
 }

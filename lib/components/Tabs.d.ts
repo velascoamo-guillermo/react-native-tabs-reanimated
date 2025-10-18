@@ -16,6 +16,8 @@ interface TabsProps {
     defaultActiveIndex?: number;
     isMultiSelector?: boolean;
     onActiveChange?: (actives: number[]) => void;
+    accessibilityLabel?: string;
+    accessibilityHint?: string;
 }
-export default function Tabs({ tabs, inactivesColor, activesColor, layoutAnimation, scrollable, containerStyle, scrollProps, viewProps, defaultActiveIndex, isMultiSelector, onActiveChange, ...tabProps }: TabsProps & Partial<TabProps>): React.JSX.Element;
+export default function Tabs({ tabs, inactivesColor, activesColor, layoutAnimation, scrollable, containerStyle, scrollProps, viewProps, defaultActiveIndex, isMultiSelector, onActiveChange, accessibilityLabel: customAccessibilityLabel, accessibilityHint: customAccessibilityHint, ...tabProps }: TabsProps & Partial<TabProps>): React.JSX.Element;
 export {};

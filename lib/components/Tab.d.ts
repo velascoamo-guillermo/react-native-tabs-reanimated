@@ -20,7 +20,10 @@ export interface TabProps {
     showTexts?: boolean;
     customCloseIcon?: React.ReactNode;
     onPress: (tab: TabType) => void;
+    accessibilityLabel?: string;
+    accessibilityHint?: string;
+    disabled?: boolean;
 }
-declare function Tab({ tab, color, isActive, layoutAnimation, tintColor, tabStyle, textProps, expoVectorIconProps, showCloseIcon, showTexts, customCloseIcon, textAnimation, onPress, }: TabProps): React.JSX.Element;
+declare function Tab({ tab, color, isActive, layoutAnimation, tintColor, tabStyle, textProps, expoVectorIconProps, showCloseIcon, showTexts, customCloseIcon, textAnimation, onPress, accessibilityLabel: customAccessibilityLabel, accessibilityHint: customAccessibilityHint, disabled, }: TabProps): React.JSX.Element;
 declare const _default: React.MemoExoticComponent<typeof Tab>;
 export default _default;
