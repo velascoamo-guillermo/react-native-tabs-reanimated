@@ -22,7 +22,25 @@
 
 ---
 
-## 📦 Installation
+## � Live Demo
+
+<div align="center">
+  <img src="https://github.com/velascoamo-guillermo/react-native-tabs-reanimated/assets/demo/tabs-showcase.png" alt="React Native Tabs Reanimated Demo" width="300"/>
+</div>
+
+_Showcasing different configurations: icons with colors, multi-select mode, text-only tabs, and various styling options_
+
+### What you can see:
+
+- 🎨 **Colorful tabs** with icons and custom background colors
+- 👆 **Multi-select mode** with close icons (×) on selected tabs
+- 📝 **Text-only tabs** with clean minimal design
+- 🎯 **Mixed configurations** showing the flexibility of the API
+- 🌈 **Custom styling** with different color schemes
+
+---
+
+## �📦 Installation
 
 ```bash
 npm install react-native-tabs-reanimated react-native-reanimated react-native-gesture-handler
