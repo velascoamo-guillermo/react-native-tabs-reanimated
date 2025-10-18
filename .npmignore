@@ -1,0 +1,22 @@
+# Development files
+src/
+App.tsx
+index.js
+.expo/
+.git/
+.gitignore
+.vscode/
+__mocks__/
+__tests__/
+app.json
+assets/
+bun.lock
+eslint.config.js
+expo-env.d.ts
+tsconfig.json
+node_modules/
+
+# Keep only distribution files
+!lib/
+!package.json
+!README.md

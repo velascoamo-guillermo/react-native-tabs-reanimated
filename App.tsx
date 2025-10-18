@@ -5,7 +5,7 @@ import {
   dataWithoutColors,
   dataWithoutIcons,
 } from "./__mocks__/tabs.mock";
-import Tabs from "./components/Tabs";
+import Tabs from "./src/components/Tabs";
 
 export default function App() {
   return (
